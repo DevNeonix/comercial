@@ -19,7 +19,6 @@ class CreateClientesTable extends Migration
             $table->string('documento');
             $table->string('direccion');
             $table->string('telefono');
-            $table->char('tip_cliente',1);
             $table->string('nombre');
             $table->string('apellido');
             $table->double('deuda');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOpcionUsuariosTable extends Migration
+class CreateArticuloAlternativosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateOpcionUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('opcion_usuarios', function (Blueprint $table) {
-            $table->integer('usuario_id');
-            $table->integer('almacen_id');
-            $table->integer('submenu_id');
+        Schema::create('articulo_alternativos', function (Blueprint $table) {
+            $table->char("codigo",20);
+            $table->string("alternativo",50);
+            $table->integer('cliente_id');
+            $table->integer('proveedor_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateOpcionUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opcion_usuarios');
+        Schema::dropIfExists('articulo_alternativos');
     }
 }

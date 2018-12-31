@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovcsTable extends Migration
+class CreateFacturascabsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,23 @@ class CreateMovcsTable extends Migration
      */
     public function up()
     {
-        Schema::create('movcs', function (Blueprint $table) {
+        Schema::create('facturascabs', function (Blueprint $table) {
             $table->char('almacen_id',4);
-            $table->char('cod_doc',1);
-            $table->char('numdoc',14);
-            $table->integer('proveedor_id');
+            $table->char('numdoc',10);
             $table->integer('cliente_id');
-            $table->char('tipmov');
-            $table->integer('docref');
+            $table->char('tipmov',1);
+            $table->string('condicion_pago');
+            $table->integer('referencia');
             $table->string('glosa');
             $table->char('moneda',2);
             $table->double('cambio');
             $table->char('estado',1);
-            $table->double('igv',1);
+            $table->char('cdr',1);
+            $table->double('igv');
             $table->double('porcigv');
             $table->double('total');
             $table->timestamps();
-            $table->primary(['almacen_id', 'cod_doc','numdoc']);
+            $table->primary(['almacen_id','numdoc']);
         });
     }
 
@@ -40,6 +40,6 @@ class CreateMovcsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movcs');
+        Schema::dropIfExists('facturascabs');
     }
 }

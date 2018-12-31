@@ -14,10 +14,10 @@ class CreateAlmacensTable extends Migration
     public function up()
     {
         Schema::create('almacens', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('almacen');
+            $table->char('almacen',4);
             $table->string('descripcion');
             $table->timestamps();
+            $table->primary(["almacen"]);
         });
     }
 

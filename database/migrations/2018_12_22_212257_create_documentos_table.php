@@ -15,7 +15,7 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('almacen_id');
+            $table->char('almacen_id',4);
             $table->char('doc');
             $table->char('serie');
             $table->char('correlativo');

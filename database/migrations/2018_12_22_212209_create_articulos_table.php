@@ -14,7 +14,7 @@ class CreateArticulosTable extends Migration
     public function up()
     {
         Schema::create('articulos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->char('codigo',20);
             $table->string('descripcion');
             $table->string('descripcion2');
             $table->double('precio1')->default(0);
@@ -27,6 +27,7 @@ class CreateArticulosTable extends Migration
             $table->integer('usuario_id_crea');
             $table->integer('usuario_id_actualiza');
             $table->timestamps();
+            $table->primary(['codigo']);
         });
     }
 
