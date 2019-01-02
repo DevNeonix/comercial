@@ -11,6 +11,17 @@
 |
  */
 
+
+use Illuminate\Support\Facades\Request;
+
 Route::get('/', function () {
-    return view('welcome');
+    if (Session::has("usuario")) {
+        return view('pages.home');
+    }
+    return redirect('login');
+});
+Route::resource('login', 'UsuarioController');
+Route::post('login', 'UsuarioController@login');
+Route::get('home', function (){
+    dd(session("email"));
 });

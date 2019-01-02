@@ -1,6 +1,9 @@
 <?php
 
+
+use App\EmpresaUsuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,4 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('usr_emp/{usuario}', 'UsuarioController@empresausuario');

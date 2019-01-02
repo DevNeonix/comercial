@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlmacensTable extends Migration
+class CreateEmpresaUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAlmacensTable extends Migration
      */
     public function up()
     {
-        Schema::create('almacens', function (Blueprint $table) {
-            $table->char('almacen',4);
-            $table->string('descripcion');
+        Schema::create('empresa_usuarios', function (Blueprint $table) {
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references("id")->on("usuarios");
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references("id")->on("empresas");
             $table->timestamps();
-            $table->primary(["almacen"]);
         });
     }
 
@@ -30,6 +29,6 @@ class CreateAlmacensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('almacens');
+        Schema::dropIfExists('empresa_usuarios');
     }
 }

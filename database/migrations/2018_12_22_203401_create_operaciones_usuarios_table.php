@@ -14,8 +14,9 @@ class CreateOperacionesUsuariosTable extends Migration
     public function up()
     {
         Schema::create('operaciones_usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('usuario_id');
+            $table->bigIncrements('id');
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->string('operacion');
             $table->date('fecha');
         });

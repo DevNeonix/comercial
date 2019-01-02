@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class UsuarioController extends Controller
 {
@@ -14,7 +16,31 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.login');
+    }
+    public function login(Request $request){
+        $data = Usuario::where("email",$request->username)->where("clave",$request->password)->get();
+        if(count($data)>0){
+
+            session()->put('email',$data[0]->email);
+            session()->put('nombre',$data[0]->nombre);
+            return redirect('/home');
+        }else{
+            return redirect('/login');
+        }
+    }
+    public function empresausuario($username){
+        $id = \App\Usuario::where('email', $username)->first();
+        if ($id != null) {
+            $data=DB::table('empresas')
+                ->join('empresa_usuarios','empresas.id',"=","empresa_usuarios.empresa_id")
+                ->where('empresa_usuarios.usuario_id','=',$id->id)
+                ->select('empresas.id','empresas.razon_social')
+                ->get();
+        }else{
+            $data=array();
+        }
+        return $data;
     }
 
     /**

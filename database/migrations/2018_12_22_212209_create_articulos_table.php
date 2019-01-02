@@ -15,6 +15,8 @@ class CreateArticulosTable extends Migration
     {
         Schema::create('articulos', function (Blueprint $table) {
             $table->char('codigo',20);
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references("id")->on("empresas");
             $table->string('descripcion');
             $table->string('descripcion2');
             $table->double('precio1')->default(0);
@@ -24,8 +26,10 @@ class CreateArticulosTable extends Migration
             $table->double('precio5')->default(0);
             $table->double('precio6')->default(0);
             $table->double('alerta_stock')->nullable();
-            $table->integer('usuario_id_crea');
-            $table->integer('usuario_id_actualiza');
+            $table->unsignedInteger('usuario_id_crea');
+            $table->foreign('usuario_id_crea')->references('id')->on("usuarios");
+            $table->unsignedInteger('usuario_id_actualiza');
+            $table->foreign('usuario_id_actualiza')->references('id')->on("usuarios");
             $table->timestamps();
             $table->primary(['codigo']);
         });

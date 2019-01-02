@@ -14,9 +14,10 @@ class CreateOpcionUsuariosTable extends Migration
     public function up()
     {
         Schema::create('opcion_usuarios', function (Blueprint $table) {
-            $table->integer('usuario_id');
-            $table->integer('almacen_id');
-            $table->integer('submenu_id');
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->unsignedInteger('submenu_id');
+            $table->foreign('submenu_id')->references('id')->on('submenus');
             $table->timestamps();
         });
     }

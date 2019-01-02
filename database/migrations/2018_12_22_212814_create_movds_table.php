@@ -14,11 +14,11 @@ class CreateMovdsTable extends Migration
     public function up()
     {
         Schema::create('movds', function (Blueprint $table) {
-            $table->char('almacen_id',4);
-            $table->char('cod_doc',1);
-            $table->char('numdoc',14);
+            $table->unsignedBigInteger('movc_id');
+            $table->foreign('movc_id')->references('movc_id')->on('movcs');
             $table->integer('nlinea');
-            $table->integer('articulo_id');
+            $table->char('articulo_id',20);
+            $table->foreign('articulo_id')->references('codigo')->on('articulos');
             $table->string('descripcion');
             $table->double('cantidad');
             $table->double('preciomn');
@@ -32,7 +32,6 @@ class CreateMovdsTable extends Migration
             $table->double('porcigv');
             $table->char('control_stock');
             $table->timestamps();
-            $table->primary(["almacen_id","cod_doc","numdoc","nlinea"]);
         });
     }
 

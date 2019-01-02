@@ -14,11 +14,14 @@ class CreateMovcsTable extends Migration
     public function up()
     {
         Schema::create('movcs', function (Blueprint $table) {
+            $table->bigIncrements('movc_id');
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references("id")->on("empresas");
             $table->char('almacen_id',4);
-            $table->char('cod_doc',1);
+            $table->foreign('almacen_id')->references('almacen')->on('almacens');
+            $table->char('cod_doc',2);
             $table->char('numdoc',14);
-            $table->integer('proveedor_id');
-            $table->integer('cliente_id');
+            $table->integer('cliente_id')->nullable();
             $table->char('tipmov');
             $table->integer('docref');
             $table->string('glosa');
@@ -29,7 +32,7 @@ class CreateMovcsTable extends Migration
             $table->double('porcigv');
             $table->double('total');
             $table->timestamps();
-            $table->primary(['almacen_id', 'cod_doc','numdoc']);
+
         });
     }
 

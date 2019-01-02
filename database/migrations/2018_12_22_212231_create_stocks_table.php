@@ -15,10 +15,14 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->char('almacen_id',4);
+            $table->foreign('almacen_id')->references('almacen')->on("almacens");
             $table->char('articulo_id',20);
+            $table->foreign('articulo_id')->references('codigo')->on("articulos");
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references('id')->on("empresas");
             $table->double('stock')->default(0);
             $table->timestamps();
-            $table->primary(["almacen_id","articulo_id"]);
+            $table->primary(["almacen_id","articulo_id","empresa_id"]);
         });
     }
 
