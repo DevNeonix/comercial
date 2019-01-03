@@ -16,15 +16,14 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+
         return view('pages.login');
     }
     public function login(Request $request){
         $data = Usuario::where("email",$request->username)->where("clave",$request->password)->get();
         if(count($data)>0){
-
-            session()->put('email',$data[0]->email);
-            session()->put('nombre',$data[0]->nombre);
-            return redirect('/home');
+            Session::put("usuario",$data[0]);
+            return redirect('admin/home');
         }else{
             return redirect('/login');
         }

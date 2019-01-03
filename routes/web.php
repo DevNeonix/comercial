@@ -13,15 +13,15 @@
 
 
 use Illuminate\Support\Facades\Request;
-
-Route::get('/', function () {
-    if (Session::has("usuario")) {
-        return view('pages.home');
-    }
+Route::get('clear', function () {
+    Session::flush();
     return redirect('login');
 });
 Route::resource('login', 'UsuarioController');
 Route::post('login', 'UsuarioController@login');
-Route::get('home', function (){
-    dd(session("email"));
+
+Route::middleware(['guard'])->prefix("admin")->group(function () {
+    Route::get('home', function () {
+        return view("pages.home");
+    });
 });

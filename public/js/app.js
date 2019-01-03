@@ -19235,8 +19235,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\proyectos\nippon\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\proyectos\nippon\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\proyectosjolver\comercial\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\proyectosjolver\comercial\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
