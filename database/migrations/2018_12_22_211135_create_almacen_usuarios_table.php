@@ -19,6 +19,8 @@ class CreateAlmacenUsuariosTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->char('almacen_id',4);
             $table->foreign('almacen_id')->references('almacen')->on('almacens');
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();
         });
     }

@@ -1,5 +1,5 @@
-@extends('layout')
-@section('container')
+@extends('layouts.app')
+@section('content')
     <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
@@ -38,21 +38,23 @@
         var username=$("#username");
         var password=$("#password");
         function buscarempresa() {
-            $("#empresa").html(``);
-            $.ajax({type:'post',
-                url:'/api/usr_emp/'+username.val(),
-                success:function(r){
+            if(username.val() != "" && password.val() !=""){
+                $("#empresa").html(``);
+                $.ajax({type:'post',
+                    url:'/api/usr_emp/'+username.val(),
+                    success:function(r){
 
-                    if(r.length>0){
-                        for(var i = 0;i<=r.length-1;i++){
-                            $("#empresa").html($("#empresa").html()+`<option value='${r[i].id}'>${r[i].razon_social}</option>`);
+                        if(r.length>0){
+                            for(var i = 0;i<=r.length-1;i++){
+                                $("#empresa").html($("#empresa").html()+`<option value='${r[i].id}'>${r[i].razon_social}</option>`);
+                            }
+                        }else{
+                            alert("No se reconoce a este usuario, digítelo correctamente.");
                         }
-                    }else{
-                        alert("No se reconoce a este usuario, digítelo correctamente.");
-                    }
 
-                }
-            });
+                    }
+                });
+            }
         }
     </script>
 @endsection
