@@ -43,7 +43,7 @@
                 $.ajax({type:'post',
                     url:'/api/usr_emp/'+username.val(),
                     success:function(r){
-
+                        console.log(r);
                         if(r.length>0){
                             for(var i = 0;i<=r.length-1;i++){
                                 $("#empresa").html($("#empresa").html()+`<option value='${r[i].id}'>${r[i].razon_social}</option>`);

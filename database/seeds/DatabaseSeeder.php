@@ -24,6 +24,16 @@ class DatabaseSeeder extends Seeder
         factory(App\Usuario::class, 25)->create();
         factory(App\Menu::class, 100)->create();
         factory(App\Submenu::class, 200)->create();
+
+
+        $emp = new App\EmpresaUsuario;
+        $emp->usuario_id = 1;
+        $emp->empresa_id = 1;
+        $emp->save();
+        $emp2 = new App\EmpresaUsuario;
+        $emp2->usuario_id = 1;
+        $emp2->empresa_id = 2;
+        $emp2->save();
         factory(App\OpcionUsuario::class, 200)->create();
     }
 }
